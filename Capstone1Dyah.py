@@ -6,7 +6,7 @@
 
 ListKaryawan = [
     {
-        'No' : '1', 
+        'No' : '101', 
         'Nama' : 'Dyah Ayu Daratika', 
         'Gender' : 'Perempuan', 
         'Umur' : 29, 
@@ -14,7 +14,7 @@ ListKaryawan = [
         'Alamat' : 'Jalan Gilimanuk No.2, Jakarta Barat'
     },
     {
-        'No' : '2', 
+        'No' : '102', 
         'Nama' : 'Irwansyah Ramadhani', 
         'Gender' : 'Laki-Laki', 
         'Umur' : 28, 
@@ -22,7 +22,7 @@ ListKaryawan = [
         'Alamat' : 'Jalan Semut Kecil No.169, Jakarta Timur'
     },
     {
-        'No' : '3', 
+        'No' : '103', 
         'Nama' : 'Vannesa Nathania', 
         'Gender' : 'Perempuan', 
         'Umur' : 20, 
@@ -30,7 +30,7 @@ ListKaryawan = [
         'Alamat' : 'Jalan Bawang No.77, Bekasi'
     },
     {
-        'No' : '4', 
+        'No' : '104', 
         'Nama' : 'Renny Rachmatya', 
         'Gender' : 'Perempuan', 
         'Umur' : 26, 
@@ -56,7 +56,7 @@ No. \t| Nama \t\t\t| Gender \t| Umur \t| Posisi \t\t| Alamat''')
         for idx, item in enumerate(ListKaryawan):
             print(f"{item['No']} \t| {item['Nama']} \t| {item['Gender']} \t| {item['Umur']} \t| {item['Posisi']} \t| {item['Alamat']}")
 
-# Pilihan Menu No. 1.1 - Report Data Karyawan       
+# Pilihan Menu No. 1 - Report Data Karyawan       
 def MenuDataKaryawan():
     print('''    
     Menu Report Data Karyawan:
@@ -82,29 +82,27 @@ def MenuDataKaryawan():
 
 def CariData(): 
     DataKaryawan()
-    InputNo = int(input('''
-    ----- Cari Data Karyawan
-    
-    Masukkan No. Karyawan yang Anda Cari: ''' ))
-
-
-    for i in range(len(ListKaryawan)):
+    InputNo = input('\nMasukkan No. Karyawan: ')
+    for i in range (len(ListKaryawan)):
         if InputNo == ListKaryawan[i]['No']:
+            print(f'''\nData Karyawan Berhasil Ditemukan\n
+            Karyawan dengan No. : {InputNo}\n
+            ----------Data Karyawan PT Maju Terus Bersama Indonesia-----------''')
             print(f'''
-    Data Karyawan Ditemukan dengan No.: {InputNo}''')
+            No. \t| Nama \t\t| Gender \t| Umur \t| Posisi \t| Alamat''')
+            print(f"{ListKaryawan[i]['No']} \t| {ListKaryawan[i]['Nama']} \t| {ListKaryawan[i]['Gender']} \t| {ListKaryawan[i]['Umur']} \t| {ListKaryawan[i]['Posisi']} \t| {ListKaryawan[i]['Alamat']}")    
+            break
+        elif InputNo != ListKaryawan[i]['No']:
             print('''
-    ----------Data Karyawan PT Maju Terus Bersama Indonesia-----------
-    No. \t| Nama \t\t| Gender \t| Umur \t| Posisi \t| Alamat''')
-            print(f"{ListKaryawan[i]['No']} \t| {ListKaryawan[i]['Nama']} \t| {ListKaryawan[i]['Gender']} \t| {ListKaryawan[i]['Umur']} \t| {ListKaryawan[i]['Posisi']} \t| {ListKaryawan[i]['Alamat']}")
-        if InputNo != ListKaryawan[i]['No']:
-            print('''
-    \t-----Data Karyawan Tidak Dapat Ditemukan-----''')
-        MenuDataKaryawan()       
+             \t-----Data Karyawan Tidak Dapat Ditemukan -----''')
+        else:
+            print(f'\nData Karyawan Tidak Berhasil Ditemukan dengan No. Karyawans : {InputNo}')
+            break   
 
 # Menu Create Data Karyawan 
 
 def InputData():
-    NoKaryawan = int(input('\t1. Masukkan No. Karyawan:'))
+    NoKaryawan = int(input('1. Masukkan No. Karyawan: '))
     for i in range(len(ListKaryawan)):
         if NoKaryawan == ListKaryawan[i]['No']:
             print('''
@@ -122,7 +120,7 @@ def InputData():
             break
     
     Notifikasi = input('''
-    -----Apakah Anda Yakin untuk Simpan Data Karyawan (Yes/No)?''')
+    -----Apakah Anda Yakin untuk Simpan Data Karyawan (Yes/No)? ''')
     if Notifikasi == 'Yes':
             ListKaryawan.append({
             'No' : NoKaryawan, 
@@ -134,7 +132,7 @@ def InputData():
          })
             print('''
     -----Data Karyawan "Berhasil" Ditambahkan-----''')
-    
+    # ListKaryawan = ListKaryawan
     elif Notifikasi == 'No':
             print('''
     -----Data Karyawan Tidak Ditambahkan-----''')
@@ -168,6 +166,7 @@ def TambahData():
         elif TambahDataKaryawan == '2':
             print('''
                 ---Anda akan Kembali ke Menu Utama---''')
+            MenuUtama()
         else:
             print('''
                 ---Pilihan yang Anda Masukkan Salah---
@@ -179,30 +178,29 @@ def TambahData():
 
 def UpdateData():
     while True:
-        UpdateDataKaryawan = input('''
-        -----Menu Update Data Karyawan----
-        
-        -----Menu: 
+        UpdateDataKaryawan = (input('''
+        -----Menu Update Data Karyawan : 
              1. Update Data Karyawan:
              2. Kembali ke Menu Utama
              
-        Silahkan Pilih Sub Menu Update Data Karyawan (1 - 2): ''')
+        Silahkan Pilih Sub Menu Update Data Karyawan (1 - 2): '''))
 
         if UpdateDataKaryawan == '1':
             DataKaryawan()
-            NoKaryawan = int(input('\t| Masukkan No. Karyawan: '))
+            NoKaryawan = (input('\n\t| Masukkan No. Karyawan: '))
             for i in range(len(ListKaryawan)):
                 if NoKaryawan == ListKaryawan[i]['No']:
-                        print('''
+                    print('''
                     ----Data Karyawan Ditemukan''')
-                        Condition = input('''
+                    Kondisi = input('''
                     -----Pilih 'Yes' jika ingin update data-----
-                    -----Pilih 'No' jika anda batal update data-----''')
-                        print()
-                        if Condition == 'Yes':
-                            print('''
+                    -----Pilih 'No' jika anda batal update data-----
+                    -----Apa Pilihan Anda ? ''')
+                    print()
+                    if Kondisi == 'Yes':
+                        print('''
                     -----Lanjutkan Update Data-----''')
-                            Informasi = input('''
+                        UpdateKeterangan = input('''
                     -----Pilih Informasi yang Mau Anda Update: 
                          1. No. Karyawan
                          2. Nama Karyawan
@@ -212,45 +210,45 @@ def UpdateData():
                          6. Alamat Karyawan
                     
                     -----Masukkan Pilihan Anda (1 - 5): ''')
-                                
-                            if Informasi == '1':
-                                NoNewKaryawan = int(input('''
-                    -----Masukkan No. Karyawan Baru: -----'''))
-                                ConditionInformation = input('''
-                        -----Apakah Anda Yakin untuk Update Data Karyawan (Yes/No)?''')
-                                if ConditionInformation == 'Yes': 
-                                    ListKaryawan[i]['No.'] = NoNewKaryawan
-                                    print('''
+
+                        if UpdateKeterangan == '1':
+                            NoNewKaryawan = int(input('''
+                    -----Masukkan No. Karyawan Baru: '''))
+                            KondisiUpdateKeterangan = input('''
+                        -----Apakah Anda Yakin untuk Update Data Karyawan (Yes/No)? ''')
+                            if KondisiUpdateKeterangan == 'Yes': 
+                                ListKaryawan[i]['No'] = NoNewKaryawan
+                                print('''
                         -----Data Karyawan "Berhasil" di-Update-----''')
-                                    DataKaryawan()
-                                elif ConditionInformation == 'No':
-                                    print('''
+                                DataKaryawan()
+                            elif KondisiUpdateKeterangan == 'No':
+                                print('''
                         -----Update Data Karyawan "Cancel"''')
-                                    UpdateData()
-                                else:
-                                    print()
-                                    print('''
+                                UpdateData()
+                            else:
+                                print()
+                                print('''
                                 ---Pilihan yang Anda Masukkan Salah---
                 
                                 ---Silahkan Masukkan Kembali Pilihan Anda: ''')
                                 break
 
-                        elif Informasi == '2':
+                        elif UpdateKeterangan == '2':
                             NamaNewKaryawan = input('''
                     -----Masukkan Nama Karyawan yang Baru: ''')
-                            ConditionInformation = input('''
+                            KondisiUpdateKeterangan = input('''
                         -----Apakah Anda Yakin untuk Update Data Karyawan (Yes/No)? ''')
-                            if ConditionInformation == 'Yes':
-                                ListKaryawan[i]['nama'] = NamaNewKaryawan
+                            if KondisiUpdateKeterangan == 'Yes':
+                                ListKaryawan[i]['Nama'] = NamaNewKaryawan
                                 print('''
                     -----Data Karyawan "Berhasil" di-Update-----''')
                                 DataKaryawan()  
 
-                            elif ConditionInformation == 'No': 
+                            elif KondisiUpdateKeterangan == 'No': 
                                 print('''
-                        -----Update Data Karyawan "Cancel"''')
+                    -----Update Data Karyawan "Cancel"''')
                                 UpdateData()
-                            
+
                             else:
                                 print()
                                 print('''
@@ -259,18 +257,17 @@ def UpdateData():
                                 ---Silahkan Masukkan Kembali Pilihan Anda: ''')
                                 break
 
-                        elif Informasi == '3':
+                        elif UpdateKeterangan == '3':
                             GenderNewKaryawan = input('''
                     -----Masukkan Gender Karyawan yang Baru: ''')
-                            ConditionInformation = input('''
+                            KondisiUpdateKeterangan = input('''
                         -----Apakah Anda Yakin untuk Update Data Karyawan (Yes/No)? ''')
-                            if ConditionInformation == 'Yes':
-                                ListKaryawan[i]['nama'] = GenderNewKaryawan
+                            if KondisiUpdateKeterangan == 'Yes':
+                                ListKaryawan[i]['Gender'] = GenderNewKaryawan
                                 print('''
                     -----Data Karyawan "Berhasil" di-Update-----''')
                                 DataKaryawan()        
-
-                            elif ConditionInformation == 'No':
+                            elif KondisiUpdateKeterangan == 'No':
                                 print('''
                         -----Update Data Karyawan "Cancel"''')
                                 UpdateData()
@@ -283,18 +280,18 @@ def UpdateData():
                                 ---Silahkan Masukkan Kembali Pilihan Anda: ''')
                                 break
                             
-                        elif Informasi == '4':
+                        elif UpdateKeterangan == '4':
                             UmurNewKaryawan = input('''
                     -----Masukkan Umur Karyawan yang Baru: ''')
-                            ConditionInformation = input('''
+                            KondisiUpdateKeterangan = input('''
                         -----Apakah Anda Yakin untuk Update Data Karyawan (Yes/No)? ''')
-                            if ConditionInformation == 'Yes':
-                                ListKaryawan[i]['nama'] = UmurNewKaryawan
+                            if KondisiUpdateKeterangan == 'Yes':
+                                ListKaryawan[i]['Umur'] = UmurNewKaryawan
                                 print('''
                     -----Data Karyawan "Berhasil" di-Update-----''')
                                 DataKaryawan()        
 
-                            elif ConditionInformation == 'No':
+                            elif KondisiUpdateKeterangan == 'No':
                                 print('''
                         -----Update Data Karyawan "Cancel"''')
                                 UpdateData()
@@ -307,18 +304,18 @@ def UpdateData():
                                 ---Silahkan Masukkan Kembali Pilihan Anda: ''')
                                 break
 
-                        elif Informasi == '5':
+                        elif UpdateKeterangan == '5':
                             PosisiNewKaryawan = input('''
                     -----Masukkan Posisi Karyawan yang Baru: ''')
-                            ConditionInformation = input('''
+                            KondisiUpdateKeterangan = input('''
                         -----Apakah Anda Yakin untuk Update Data Karyawan (Yes/No)? ''')
-                            if ConditionInformation == 'Yes':
-                                ListKaryawan[i]['nama'] = PosisiNewKaryawan
+                            if KondisiUpdateKeterangan == 'Yes':
+                                ListKaryawan[i]['Posisi'] = PosisiNewKaryawan
                                 print('''
                     -----Data Karyawan "Berhasil" di-Update-----''')
                                 DataKaryawan()        
 
-                            elif ConditionInformation == 'No':
+                            elif KondisiUpdateKeterangan == 'No':
                                 print('''
                         -----Update Data Karyawan "Cancel"''')
                                 UpdateData()
@@ -331,18 +328,18 @@ def UpdateData():
                                 ---Silahkan Masukkan Kembali Pilihan Anda: ''')
                                 break
 
-                        elif Informasi == '6':
+                        elif UpdateKeterangan == '6':
                             AlamatNewKaryawan = input('''
                     -----Masukkan Alamat Karyawan yang Baru: ''')
-                            ConditionInformation = input('''
+                            KondisiUpdateKeterangan = input('''
                         -----Apakah Anda Yakin untuk Update Data Karyawan (Yes/No)? ''')
-                            if ConditionInformation == 'Yes':
-                                ListKaryawan[i]['nama'] = AlamatNewKaryawan
+                            if KondisiUpdateKeterangan == 'Yes':
+                                ListKaryawan[i]['Alamat'] = AlamatNewKaryawan
                                 print('''
                     -----Data Karyawan "Berhasil" di-Update-----''')
                                 DataKaryawan()        
 
-                            elif ConditionInformation == 'No':
+                            elif KondisiUpdateKeterangan == 'No':
                                 print('''
                         -----Update Data Karyawan "Cancel"''')
                                 UpdateData()
@@ -353,7 +350,11 @@ def UpdateData():
                                 ---Pilihan yang Anda Masukkan Salah---
                     
                                 ---Silahkan Masukkan Kembali Pilihan Anda: ''')
-                                break
+                            break
+                    else:
+                        print('''
+                    ----Data Karyawan Tidak Ditemukan''')
+                        return
 
         elif UpdateDataKaryawan == '2':
             print('''
@@ -362,10 +363,9 @@ def UpdateData():
 
         else:
             print('''
-            ---Pilihan yang Anda Masukkan Salah---
-                
-            ---Silahkan Masukkan Kembali Pilihan Anda: ''')
-            UpdateData()
+        ---Anda akan Kembali ke Menu Utama---''')
+            MenuUtama()
+
 
 # Delete Data Karyawan 
 
@@ -384,8 +384,8 @@ def DeleteDataKaryawan():
     -----Silahkan pilih Sub Menu Delete Data Karyawan (1 - 2): ''')
 
         if DeleteDataKaryawan == '1':
-            NoKaryawan = int(input('''
-    -----Masukkan No. Karyawan yang ingin di-delete: '''))
+            NoKaryawan = input('''
+    -----Masukkan No. Karyawan yang ingin di-delete: ''')
             for i in range(len(ListKaryawan)):
                 if NoKaryawan == ListKaryawan[i]['No']:
                     print('''
@@ -397,17 +397,19 @@ def DeleteDataKaryawan():
                         del ListKaryawan[i]
                         print(f'''
         -----Data Karyawan No.: {NoKaryawan} "Berhasil" di-delete-----''')
-                        break
+                        DataKaryawan()
+
 
                     elif DeleteCondition == 'No':
                         print('''
         -----Data Karyawan Tidak di-delete-----''')
                         break
-
+                    
                     else:
                         print('''
         -----Anda Memasukkan Pilihan yang Salah-----\n\tSilahkan masukkan pilihan Menu yang Benar (Yes/No: ''')
-       
+                    MenuUtama()
+
         elif DeleteDataKaryawan == '2':
             print('''
         -----Anda akan Kembali ke Menu Utama---''')
@@ -429,7 +431,7 @@ def MenuUtama():
         1. Report Data Karyawan 
         2. Menambah Data Karyawan 
         3. Update Data Karyawan 
-        4. Menghapus Data Karyawan 
+        4. Delete Data Karyawan 
         5. Exit Program
     
     Silahkan pilih Menu diatas (1-5) : ''')
@@ -445,7 +447,7 @@ def MenuUtama():
             DeleteDataKaryawan()
         elif PilihanMenu == '5':
             print('''
-    -----Terima Kasih-----''')
+    -----Terima Kasih Sudah Menggunakan Meng-akses Program Data Karyawan Kami-----''')
             quit()
         else:
             print()
